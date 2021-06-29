@@ -12,7 +12,7 @@ pipeline {
                }
                catch(err)
                {
-                   echo err
+                   echo err.nessage
                }
               }
              }
