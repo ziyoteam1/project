@@ -8,7 +8,7 @@ pipeline {
                try
                {
                    git 'https://github.com/ziyoteam1/project.git'
-                   sh "python fizzbuzz.py"
+                   sh "python3 fizzbuzz.py"
                }
                catch(err)
                {
