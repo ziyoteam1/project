@@ -1,0 +1,9 @@
+- hosts: all
+  become: yes
+  tasks:
+
+   - name: disable firewall service
+     service:
+        name: firewalld
+        state: stopped
+        enabled: false
