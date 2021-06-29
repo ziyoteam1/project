@@ -1,0 +1,8 @@
+- name: DNS client
+  hosts: all
+  become: yes
+  tasks:
+  - name: Insert dns file 
+    ansible.builtin.template:
+      src:  /home/ansible/ansible-project_files/webserver_files/etcconf
+      dest: /etc/resolv.conf
