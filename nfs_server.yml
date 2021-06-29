@@ -1,0 +1,30 @@
+---
+- hosts: 192.168.33.40
+  become: yes
+  tasks:
+    - name: install nfs-utils
+      yum: name=nfs-utils state=latest
+    - name: Create a mountable directory if it does not exist
+      file:
+        path: /shared
+        state: directory
+        owner: ansible
+        group: ansible
+        mode: '0775'
+    - name: enable rpcbind nfslock nfs
+      service:
+        name: "{{ item }}"
+        enabled: yes
+      with_items:
+        - rpcbind
+        - nfslock
+        - nfs
+    - name: Copy exports file.
+      template:
+        src: /home/ansible/.ansible/collections/exports.j2
+        dest: /etc/exports
+        owner: ansible
+        group: ansible
+        mode: 0644
+    # - name: NFS apply change configrue
+      # shell: exportfs -a ; systemctl restart nfs-server
