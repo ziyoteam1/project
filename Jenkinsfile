@@ -1,0 +1,21 @@
+pipeline {
+        agent any
+    
+        stages {
+            stage('Hello') {
+               steps {
+                  script {
+               try
+               {
+                   git 'https://github.com/ziyoteam1/project.git'
+                   sh "python fizzbuzz.py"
+               }
+               catch(err)
+               {
+                   echo err
+               }
+              }
+             }
+            }
+        }
+    }
