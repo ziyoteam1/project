@@ -1,0 +1,7 @@
+--- 
+- 
+  become: true
+  hosts: balancer
+  roles: 
+    - 
+      role: geerlingguy.haproxy 
